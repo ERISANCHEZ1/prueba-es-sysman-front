@@ -5,39 +5,45 @@
   padding: 10px;
   border-bottom: 1px solid #ddd;
   gap: 12px;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
 }
 
 .task-item span {
-  flex: 1 1 60%;
+  flex: 2 1 70%;
   margin-right: 12px;
   white-space: normal;
   overflow-wrap: break-word;
 }
 
 .task-item button {
-  background-color: #007bff;
+  background-color: #6a98ca;
   color: white;
   border: none;
-  border-radius: 4px;
-  padding: 4px 12px;
+  border-radius: 3px;
+  padding: 6px 12px;
   font-size: 0.70rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
   min-width: 80px;
-  white-space: nowrap;
+  white-space: normal;
   overflow: visible;
-  text-overflow: clip;
+
   display: inline-flex;
   align-items: center;
   justify-content: flex-start;
   box-sizing: border-box;
-  margin-left: 6px;
+  margin-left: 3px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+   flex-grow: 0; 
+   
 }
 
 .task-item button:hover {
-  background-color: #0056b3;
+  background-color: #b1c4d8;
 }
+
+
 
 .task-item button.delete-btn {
   background-color: #dc3545;
@@ -53,7 +59,8 @@
   }
   .task-item button {
     min-width: auto;
-    width: 100%;
+    width: 80%;
+    text-align: center;
     margin-left: 0;
     margin-top: 6px;
   }
