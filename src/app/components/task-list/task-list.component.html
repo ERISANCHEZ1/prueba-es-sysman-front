@@ -68,14 +68,15 @@
         />
       </div>
 
-      <!-- Botón para guardar cambios -->
-     <button mat-icon-button color="primary" (click)="updateTask(task)" aria-label="Guardar cambios">
-  <mat-icon>guardar</mat-icon>  <!-- usa icono "save" en lugar de "guardar" -->
-</button>
+      <button mat-raised-button color="primary" (click)="updateTask(task)" aria-label="Guardar">
+           <span>Guardar</span>
+      </button>
 
-<button mat-icon-button color="warn" (click)="deleteTask(task.task_id)" aria-label="Eliminar tarea">
-  <mat-icon>eliminar</mat-icon> <!-- usa icono "delete" -->
-</button>
+      <!-- Botón para eliminar tarea -->
+      <button mat-raised-button color="warn" (click)="deleteTask(task.task_id)" aria-label="Eliminar">
+        
+        <span>Eliminar</span>
+      </button>
     </li>
   </ul>
 
