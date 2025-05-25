@@ -1,0 +1,83 @@
+<div class="task-list-container">
+
+  <!-- Mensajes -->
+  <div *ngIf="successMessage" class="alert alert-success">{{ successMessage }}</div>
+  <div *ngIf="errorMessage" class="alert alert-error">{{ errorMessage }}</div>
+
+  <!-- Formulario para nueva tarea -->
+  <form (ngSubmit)="onSubmit()" #taskForm="ngForm" class="task-form">
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Título</mat-label>
+      <input
+        matInput
+        required
+        name="title"
+        [(ngModel)]="newTask.title"
+        aria-label="Título de la tarea"
+        placeholder="Escribe el título"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Descripción</mat-label>
+      <input
+        matInput
+        name="description"
+        [(ngModel)]="newTask.description"
+        aria-label="Descripción de la tarea"
+        placeholder="Describe la tarea"
+      />
+    </mat-form-field>
+
+    <mat-checkbox
+      [(ngModel)]="newTask.completed"
+      name="completed"
+      aria-label="Estado de completado de la tarea"
+    >
+      Completada
+    </mat-checkbox>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="!taskForm.form.valid">
+      Agregar tarea
+    </button>
+  </form>
+
+  <hr />
+
+  <!-- Lista de tareas -->
+  <div *ngIf="loading">Cargando tareas...</div>
+  <ul class="task-list" *ngIf="!loading && tasks.length > 0">
+    <li *ngFor="let task of tasks" [class.completed]="task.completed" class="task-item">
+
+      <!-- Checkbox para marcar completada -->
+      <mat-checkbox [(ngModel)]="task.completed" (change)="toggleTaskCompletion(task)" aria-label="Marcar completada">
+      </mat-checkbox>
+
+      <!-- Editable título y descripción -->
+      <div class="task-details">
+        <input
+          [(ngModel)]="task.title"
+          class="task-title"
+          [readonly]="false"
+          aria-label="Editar título"
+        />
+        <input
+          [(ngModel)]="task.description"
+          class="task-description"
+          aria-label="Editar descripción"
+        />
+      </div>
+
+      <!-- Botón para guardar cambios -->
+     <button mat-icon-button color="primary" (click)="updateTask(task)" aria-label="Guardar cambios">
+  <mat-icon>guardar</mat-icon>  <!-- usa icono "save" en lugar de "guardar" -->
+</button>
+
+<button mat-icon-button color="warn" (click)="deleteTask(task.task_id)" aria-label="Eliminar tarea">
+  <mat-icon>eliminar</mat-icon> <!-- usa icono "delete" -->
+</button>
+    </li>
+  </ul>
+
+  <div *ngIf="!loading && tasks.length === 0">No hay tareas para mostrar.</div>
+</div>
